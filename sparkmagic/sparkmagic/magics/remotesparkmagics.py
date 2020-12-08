@@ -128,6 +128,7 @@ class RemoteSparkMagics(SparkMagicBase):
         # config
         elif subcommand == "config":
             conf.override(conf.session_configs.__name__, json.loads(cell))
+            conf.override_required()
         # add
         elif subcommand == "add":
             if args.url is None:
@@ -189,6 +190,6 @@ class RemoteSparkMagics(SparkMagicBase):
         {}
 """.format("\n".join(sessions_info), conf.session_configs()))
 
-        
+
 def load_ipython_extension(ip):
     ip.register_magics(RemoteSparkMagics)
